@@ -45,7 +45,44 @@ The dataset contains student health and lifestyle indicators, including:
 - Project Hours
 - Health Risk Level
 
-Source: [Kaggle - Student Health Data](https://www.kaggle.com/datasets/ziya07/student-health-data))
+Source: [Kaggle - Student Health Data](https://www.kaggle.com/datasets/ziya07/student-health-data)
+
+## Tech Stack
+- Python
+- Flask
+- SQLite
+- HTML / Jinja Templates
+- Pathlib
+
+## Project Structure
+```
+student-health-flask-app/
+│
+├── app.py
+├── student_health_data.db
+├── requirements.txt
+├── README.md
+│
+├── templates/
+│   ├── homepage.html
+│   ├── about.html
+│   ├── data_table.html
+│   └── group_info.html
+│
+└── static/
+    └── style.css
+```
+
+## Application Routes
+```
+| Route    | Description                     |
+| -------- | ------------------------------- |
+| `/`      | Homepage                        |
+| `/about` | Dataset and project description |
+| `/data`  | Displays student health data    |
+| `/group` | Contributors information        |
+```
+
 
 
 ## Prerequisites and Packages/Libraries
