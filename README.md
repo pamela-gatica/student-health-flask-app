@@ -84,15 +84,29 @@ student-health-flask-app/
 ```
 
 ## Installation & Setup
-1. Clone the repository:
+### 1. Clone the repository:
    ```
    git clone https://github.com/your-username/student-health-flask-app.git
    cd student-health-flask-app
    ```
-3. Create virtual environment (optional but recommended):
-4. Install dependencies:
-5. Run the application:
-6. Open in browser:
+### 2. Create virtual environment (optional but recommended):
+   ```
+   python -m venv venv
+   source venv/bin/activate   # Mac/Linux
+   venv\Scripts\activate      # Windows
+   ```
+### 3. Install dependencies:
+    ```
+    pip install flask
+    ```
+### 4. Run the application:
+    ```
+    python app.py
+    ```
+### 5. Open in browser:
+    ```
+    http://127.0.0.1:5000/
+    ```
 
 ## Prerequisites and Packages/Libraries
 - Python 3.12.7
