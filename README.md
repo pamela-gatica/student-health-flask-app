@@ -8,7 +8,7 @@ This project demonstrates how to build a simple end-to-end data application comb
 Contents
 - [Features](#features)
 - [Dataset](#dataset)
-- [Tech Stack](#ech-stack)
+- [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
 - [Application Routes](#application-routes)
 - [Installation & Setup](#installation-&-setup)
