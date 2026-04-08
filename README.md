@@ -11,7 +11,7 @@ Contents
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
 - [Application Routes](#application-routes)
-- [Installation & Setup](#installation-&-setup)
+- [Installation & Setup](#installation-setup)
 - [Key Learning Outcomes](#key-learning-outcomes)
 - [Future Improvements](#future-improvements)
 
