@@ -22,13 +22,30 @@ Contents
 13. [References](#references)
 14. [Additional Information](#additional-information)
 
-##Features
+## Features
 - Web application built with Flask
 - Integration with SQLite database
 - Multiple navigation pages using HTML templates
 - Displays structured student health data
 - Clean and simple user interface
 - Modular and maintainable code structure
+
+## Dataset
+
+The dataset contains student health and lifestyle indicators, including:
+
+- Age and Gender
+- Heart Rate
+- Blood Pressure (Systolic & Diastolic)
+- Stress Level (Biosensor & Self-Report)
+- Physical Activity
+- Sleep Quality
+- Mood
+- Study Hours
+- Project Hours
+- Health Risk Level
+
+Source: [Kaggle - Student Health Data](https://www.kaggle.com/datasets/ziya07/student-health-data))
 
 
 ## Prerequisites and Packages/Libraries
