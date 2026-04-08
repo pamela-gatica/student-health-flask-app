@@ -1,4 +1,11 @@
-## Contents
+## Student Health Data Web App
+
+## Overview
+A lightweight Flask-based web application that integrates SQLite to explore and analyze student health and wellness data. The application provides an intuitive interface to view key indicators such as stress levels, sleep quality, physical activity, mood, and overall health risk.
+
+This project demonstrates how to build a simple end-to-end data application combining backend development, database management, and web visualization.
+
+Contents
 1. [Project Name](#project-name)
 2. [Project Description](#project-description)
 3. [Prerequisites and Packages/Libraries](#prerequisites-and-packageslibraries)
