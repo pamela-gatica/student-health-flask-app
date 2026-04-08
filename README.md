@@ -6,21 +6,14 @@ A lightweight Flask-based web application that integrates SQLite to explore and 
 This project demonstrates how to build a simple end-to-end data application combining backend development, database management, and web visualization.
 
 Contents
-1. [Project Name](#project-name)
-2. [Project Description](#project-description)
-3. [Prerequisites and Packages/Libraries](#prerequisites-and-packageslibraries)
-4. [Getting Started](#getting-started)
-5. [Installation and Configuration Instructions](#installation-and-configuration-instructions)
-6. [Running the project_flask Application](#running-the-project_flask-application)
-7. [Project/Code Structure](#projectcode-structure)
-8. [App Routes](#app-routes)
-9. [License](#license)
-10. [References](#references)
-9. [Contributing](#contributing)
-10. [Authors and Contributors](#authors-&-contributors)
-12. [License](#license)
-13. [References](#references)
-14. [Additional Information](#additional-information)
+- [Features](#features)
+- [Dataset](#dataset)
+- [Tech Stack](#ech-stack)
+- [Project Structure](#project-structure)
+- [Application Routes](#application-routes)
+- [Installation & Setup](#installation-&-setup)
+- [Key Learning Outcomes](#key-learning-outcomes)
+- [Future Improvements](#future-improvements)
 
 ## Features
 - Web application built with Flask
@@ -118,6 +111,7 @@ student-health-flask-app/
 
 ## Author
 Pamela Gatica
+
 Data Analytics Student | Background in Psychology & HR
 
 ## Final Note
