@@ -77,10 +77,10 @@ student-health-flask-app/
 ```
 | Route    | Description                     |
 | -------- | ------------------------------- |
-| `/`      | Homepage                        |
-| `/about` | Dataset and project description |
-| `/data`  | Displays student health data    |
-| `/group` | Contributors information        |
+| /       | Homepage                        |
+| /about  | Dataset and project description |
+| /data   | Displays student health data    |
+| /group  | Contributors information        |
 ```
 
 
