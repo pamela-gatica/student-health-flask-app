@@ -77,13 +77,22 @@ student-health-flask-app/
 ```
 | Route    | Description                     |
 | -------- | ------------------------------- |
-| /       | Homepage                        |
-| /about  | Dataset and project description |
-| /data   | Displays student health data    |
-| /group  | Contributors information        |
+| /        | Homepage                        |
+| /about   | Dataset and project description |
+| /data    | Displays student health data    |
+| /group   | Contributors information        |
 ```
 
-
+## Installation & Setup
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/student-health-flask-app.git
+   cd student-health-flask-app
+   ```
+3. Create virtual environment (optional but recommended):
+4. Install dependencies:
+5. Run the application:
+6. Open in browser:
 
 ## Prerequisites and Packages/Libraries
 - Python 3.12.7
