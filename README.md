@@ -21,11 +21,16 @@ Contents
 12. [License](#license)
 13. [References](#references)
 14. [Additional Information](#additional-information)
-## Project Name
-- **Project_flask.py**
-## Project Description
-- The `project_flask.py` application allows users to view student health data stored in an SQLite database, `student_health_data.db`. The app provides a simple interface to navigate between the project information, about page, and the data table.
-- The data was sourced from Kaggle: [Student-Health-Data](https://www.kaggle.com/datasets/ziya07/student-health-data).
+
+##Features
+- Web application built with Flask
+- Integration with SQLite database
+- Multiple navigation pages using HTML templates
+- Displays structured student health data
+- Clean and simple user interface
+- Modular and maintainable code structure
+
+
 ## Prerequisites and Packages/Libraries
 - Python 3.12.7
 - Flask and `render_template` from flask
