@@ -6,10 +6,8 @@ A lightweight Flask-based web application that integrates SQLite to explore and 
 This project demonstrates how to build a simple end-to-end data application combining backend development, database management, and web visualization.
 
 ## Application Preview
-<p align="center">
-  <img src="images/home.png" width="50%">
-  <img src="images/data.png" width="50%">
-</p>
+<img src="images/home.png" width="500">
+<img src="images/data.png" width="500">
 
 Contents
 - [Features](#features)
