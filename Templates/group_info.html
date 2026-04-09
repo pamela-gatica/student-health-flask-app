@@ -1,34 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group information</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            text-align: left;
-            margin-left: 20px;
-            color: #4CAF50;
-            font-size: 40px;
-        }
-        ul li {
-            line-height: 2;
-            color: #291f77;
-            font-weight: bold;
-        }
-    </style>
-</head>
-    <body>
-        <h1>Group Information:</h1>
-        <ul>
-            <li>Pamela Gatica: 0877516</li>
-            <li>Ivy Hoetu: 0865505</li>
-            <li>Javid Mehdiyev: 0862756</li>
-            <li>Fawaz Dimachki: 0867432</li>
-        </ul>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Credits | Student Health Data Web App{% endblock %}
+
+{% block content %}
+<section class="card">
+    <h1>Project Credits</h1>
+    <p>
+        This project was originally developed as a group academic assignment.
+
+        It has been further enhanced and refined by Pamela Gatica as an individual portfolio project, 
+        with improvements in design, structure, and functionality.
+    </p>
+
+    <ul class="credit-list">
+        <li>Pamela Gatica (Project Enhancement & Development)</li>
+        <li>Ivy Hoetu</li>
+        <li>Javid Mehdiyev</li>
+        <li>Fawaz Dimachki</li>
+    </ul>
+</section>
+{% endblock %}
