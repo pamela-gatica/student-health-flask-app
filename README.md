@@ -3,7 +3,7 @@
 ## Overview
 A lightweight Flask-based web application that integrates SQLite to explore and analyze student health and wellness data. The application provides an intuitive interface to view key indicators such as stress levels, sleep quality, physical activity, mood, and overall health risk.
 
-This project demonstrates how to build a simple end-to-end data application combining backend development, database management, and web visualization.
+This project highlights the integration of data analytics concepts with web development to deliver accessible and interactive data exploration.
 
 ## Application Preview
 <img src="images/home.png" width="700">
@@ -48,7 +48,7 @@ Source: [Kaggle - Student Health Data](https://www.kaggle.com/datasets/ziya07/st
 - Python
 - Flask
 - SQLite
-- HTML / Jinja Templates
+- HTML / Jinja2 Templates
 - Pathlib
 
 ## Project Structure
@@ -114,6 +114,12 @@ including improvements in:
 - Structuring a multi-page web app with templates
 - Handling and displaying structured data
 - Writing clean and maintainable backend code
+
+## Key Highlights
+- End-to-end data application using Python and Flask  
+- Integration of structured datasets with a relational database  
+- Clean UI design for improved data accessibility  
+- Transformation of an academic project into a professional portfolio piece  
 
 ## Future Improvements
 - Add filtering options (by gender, mood, health risk level)
