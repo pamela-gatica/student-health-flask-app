@@ -1,93 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-        }
-        header {
-            text-align: center;
-            padding: 10px;
-            background-color: #291f77;
-            font-size: 24px;
-        }
-            header h1 {
-            margin-bottom: 5px;
-            color: #4CAF50;
-        }
-            header h2 {
-            color: #f9f9f9; 
-            margin-top: 5px;
-        }
-        main {
-            padding: 20px;
-            text-align: left;
-        }
-            main h1 {
-            font-size: 2em;
-            color: #4CAF50;
-        }
-            main h2 {
-            margin-bottom: 20px;
-            color: #291f77;
-        }
-        main ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        main ul li {
-            margin: 10px 0;
-        }
-        main ul li a {
-            text-decoration: none;
-            font-weight: bold;
-            color: #291f77;
-            background-color: #e7e7e7c2;
-            padding: 10px 15px;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        main ul li a:hover {
-            background-color: #4CAF50;
-            color: white;
-        }
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 98%;
-            padding: 10px;
-            background-color: #291f77;
-            color: white;
-            text-align: center;
-        }
-     
-    </style>
-</head>
-<body>
+{% extends "base.html" %}
 
-<header>
-    <h1>Python Project</h1>
-    <h2>Group 10</h2>
-</header>
+{% block title %}Home | Student Health Data Web App{% endblock %}
 
-<main>
-    <h1>Welcome to our website!</h1>
-    <h2>Choose what you want to see:</h2>
-    <ul>
-        <li><a href="/about">About page</a></li>
-        <li><a href="/data">Data page</a></li>
-        <li><a href="/group">Group Information</a></li>
+{% block content %}
+<section class="hero">
+    <h1>Student Health Data Web App</h1>
+    <p>
+        A lightweight Flask and SQLite web application for exploring and analyzing
+        student health and wellness data, including stress levels, sleep quality,
+        physical activity, mood, and health risk indicators.
+    </p>
+
+    <div class="button-group">
+        <a href="/about" class="btn btn-primary">Explore the Dataset</a>
+        <a href="/data" class="btn btn-secondary">View Data Table</a>
+    </div>
+</section>
+
+<section class="card">
+    <h2>Project Highlights</h2>
+    <ul class="info-list">
+        <li>Built with Python, Flask, SQLite, HTML, and CSS</li>
+        <li>Displays structured student wellness data in a web interface</li>
+        <li>Demonstrates database integration and multi-page application design</li>
+        <li>Designed as a portfolio project to showcase backend and data skills</li>
     </ul>
-        
-</main>
-
-<footer>
-    <p>© 2024 Python Course - Group 10. All Rights Reserved.</p>
-</footer>
-
-</body>
-</html>
+</section>
+{% endblock %}
