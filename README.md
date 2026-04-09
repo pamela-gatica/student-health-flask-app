@@ -54,10 +54,10 @@ student-health-flask-app/
 ├── app.py
 ├── student_health_data.db
 ├── templates/
-│   ├── base.html
-│   ├── homepage.html
 │   ├── about.html
+│   ├── base.html
 │   ├── data_table.html
+│   ├── homepage.html
 │   └── group_info.html
 └── static/
     └── style.css
