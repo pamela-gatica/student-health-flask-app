@@ -53,15 +53,12 @@ student-health-flask-app/
 │
 ├── app.py
 ├── student_health_data.db
-├── requirements.txt
-├── README.md
-│
 ├── templates/
+│   ├── base.html
 │   ├── homepage.html
 │   ├── about.html
 │   ├── data_table.html
 │   └── group_info.html
-│
 └── static/
     └── style.css
 ```
