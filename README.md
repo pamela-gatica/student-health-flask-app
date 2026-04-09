@@ -96,6 +96,16 @@ student-health-flask-app/
 ### 5. Open in browser:
     http://127.0.0.1:5000/
 
+## Project Evolution
+This project was initially developed as a collaborative academic assignment. 
+It has since been independently enhanced and transformed into a portfolio project by Pamela Gatica, 
+including improvements in:
+
+- Code structure and organization  
+- UI/UX design and styling  
+- Documentation and project presentation  
+- Application maintainability and scalability  
+
 ## Key Learning Outcomes
 - Building a web application using Flask
 - Connecting Python applications to an SQLite database
@@ -111,9 +121,11 @@ student-health-flask-app/
 - Deploy the application (e.g., Render, Railway, or Heroku)
 
 ## Author
-Pamela Gatica
 
-Data Analytics Student | Background in Psychology & HR
+**Pamela Gatica**  
+Data Analytics Student | Background in Psychology & HR  
 
+- Interested in data analytics, backend development, and data-driven applications  
+- Currently building portfolio projects combining Python, data, and web development  
 ## Final Note
 This project is part of my journey into data analytics and backend development, focusing on transforming raw data into accessible and meaningful insights through simple web applications.
