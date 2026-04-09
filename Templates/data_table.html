@@ -1,74 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Health Data</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-        }
-        header h1 {
-            text-align: center;
-            color: #291f77;
-            font-size: 40px;
-        }
-        table {
-            max-width: 50%;
-            border-collapse: collapse;
-            table-layout: auto;
-            font-size: 14px;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 4px 6px;
-            text-align: left;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        tr:hover {
-            background-color: #ddd;
-        }
+{% extends "base.html" %}
 
-    </style>
-</head>
-<body>
+{% block title %}Data | Student Health Data Web App{% endblock %}
 
-<header>
+{% block content %}
+<section class="card">
     <h1>Student Health Data</h1>
-</header>
-    
+    <p>
+        The table below shows a sample of student health and wellness records
+        retrieved from the SQLite database.
+    </p>
+</section>
+
+<div class="table-wrapper">
     <table>
         <thead>
             <tr>
-                <th>Student_ID</th>
+                <th>Student ID</th>
                 <th>Age</th>
                 <th>Gender</th>
-                <th>Heart_Rate</th>
-                <th>Blood_Pressure_Systolic</th>
-                <th>Blood_Pressure_Diastolic</th>
-                <th>Stress_Level_Biosensor</th>
-                <th>Stress_Level_Self_Report</th>
-                <th>Physical_Activity</th>
-                <th>Sleep_Quality</th>
+                <th>Heart Rate</th>
+                <th>Systolic BP</th>
+                <th>Diastolic BP</th>
+                <th>Stress (Biosensor)</th>
+                <th>Stress (Self-Report)</th>
+                <th>Physical Activity</th>
+                <th>Sleep Quality</th>
                 <th>Mood</th>
-                <th>Study_Hours</th>
-                <th>Project_Hours</th>
-                <th>Health_Risk_Level</th>
+                <th>Study Hours</th>
+                <th>Project Hours</th>
+                <th>Health Risk Level</th>
             </tr>
         </thead>
         <tbody>
             {% for student in students %}
             <tr>
-                {% for data in student %}
-                <td>{{ data }}</td>
-                {% endfor %}
+                <td>{{ student["Student_ID"] }}</td>
+                <td>{{ student["Age"] }}</td>
+                <td>{{ student["Gender"] }}</td>
+                <td>{{ student["Heart_Rate"] }}</td>
+                <td>{{ student["Blood_Pressure_Systolic"] }}</td>
+                <td>{{ student["Blood_Pressure_Diastolic"] }}</td>
+                <td>{{ student["Stress_Level_Biosensor"] }}</td>
+                <td>{{ student["Stress_Level_Self_Report"] }}</td>
+                <td>{{ student["Physical_Activity"] }}</td>
+                <td>{{ student["Sleep_Quality"] }}</td>
+                <td>{{ student["Mood"] }}</td>
+                <td>{{ student["Study_Hours"] }}</td>
+                <td>{{ student["Project_Hours"] }}</td>
+                <td>{{ student["Health_Risk_Level"] }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+</div>
+{% endblock %}
