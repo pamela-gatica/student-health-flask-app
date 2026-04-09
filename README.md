@@ -9,6 +9,11 @@ This project highlights the integration of data analytics concepts with web deve
 <img src="images/home.png" width="700">
 <img src="images/data.png" width="700">
 
+## Data Files
+- `student_health_data.csv`: Raw dataset used for data ingestion and preprocessing  
+- `student_health_data.db`: SQLite database used by the Flask application  
+- `project.ipynb`: Jupyter Notebook used for data cleaning, preprocessing, and exploratory data analysis (EDA), forming the foundation for the web application  
+
 Contents
 - [Features](#features)
 - [Dataset](#dataset)
@@ -16,7 +21,9 @@ Contents
 - [Project Structure](#project-structure)
 - [Application Routes](#application-routes)
 - [Installation & Setup](#installation--setup)
+- [Project Evolution](#project-evolution)
 - [Key Learning Outcomes](#key-learning-outcomes)
+- [Key Highlights](#key-highlights)
 - [Future Improvements](#future-improvements)
 
 ## Features
@@ -28,7 +35,6 @@ Contents
 - Modular and maintainable code structure
 
 ## Dataset
-
 The dataset contains student health and lifestyle indicators, including:
 
 - Age and Gender
