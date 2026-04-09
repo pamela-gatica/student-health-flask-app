@@ -1,70 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            text-align: center;
-            color: #291f77;
-            font-size: 40px;
-        }
-        h2 {
-            text-align: left;
-            margin-left: 40px;
-            color: #4CAF50;
-            font-size: 30px;
-        }
-        ol li {
-            line-height: 1.5;
-            font-weight: bold;
-            text-align: justify;
-            color: #291f77;
-            margin-left: 20px;
-        }
-        ul li {
-            margin-left: 18px;
-            line-height: 2;
-        }
-    
-    </style>
-        
-    </head>
-    <body>
-        <h1>About the Database</h1>
-        <h2>Information:</h2>
-        <ol>
-            <li>Source of the Data:</li>
-                <p><a href="https://www.kaggle.com/datasets/ziya07/student-health-data">Student Health Data</a></p>
-            <li>Name of the Database:</li>
-                <p>Student-Health-Data</p>
-            <li>Description:</li>
-                <p style="line-height: 1.8;">"The file contains data for assessing health risks among college 
-                    students involved in academic and entrepreneurial activities. The data is structured to support 
-                    machine learning models that predict health conditions related to stress, physical strain, 
-                    and mental well-being. Each row represents an individual student’s health, workload, 
-                    and lifestyle characteristics" (https://www.kaggle.com/datasets/ziya07/student-health-data).</p>
-            
-            <li>Observation:</li>
-                <p>The original data contain 1000 rows and 14 columns, but for this webpage, we only consider to display
-                    a sample of 100 rows and the original 14 columns.</p>
-            <li>Data Structure:</li>
-        </ol>
-        <ul>
-            <li>Student_ID: Unique identifier for each student.</li>
-            <li>Age and Gender: Demographic information relevant to physiological data interpretation.</li>
-            <li>Heart_Rate, Blood_Pressure_Systolic, Blood_Pressure_Diastolic: Physiological measurements gathered from biosensors, indicative of cardiovascular health.</li>
-            <li>Stress_Level_Biosensor and Stress_Level_Self_Report: Biosensor and self-reported stress levels on a scale of 1 to 10.</li>
-            <li>Physical_Activity and Sleep_Quality: Categorical variables indicating physical activity level (Low, Moderate, High) and sleep quality (Poor, Moderate, Good).</li>
-            <li>Mood: Self-reported emotional state categorized as 'Happy', 'Neutral', or 'Stressed'.</li>
-            <li>Study_Hours and Project_Hours: Weekly hours dedicated to study and entrepreneurial activities, which are major factors contributing to workload.</li>
-            <li>Health_Risk_Level: Target label derived based on stress and lifestyle indicators, categorized as Low, Moderate, or High risk.</li>
-        </ul>  
-            
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}About | Student Health Data Web App{% endblock %}
+
+{% block content %}
+<section class="card">
+    <h1>About the Dataset</h1>
+    <p>
+        This project uses the <strong>Student Health Data</strong> dataset from Kaggle.
+        It includes wellness and workload-related indicators that can be used to explore
+        student health patterns and potential risk levels.
+    </p>
+
+    <p>
+        <strong>Dataset source:</strong>
+        <a href="https://www.kaggle.com/datasets/ziya07/student-health-data" target="_blank">
+            Kaggle - Student Health Data
+        </a>
+    </p>
+
+    <p>
+        The original dataset contains <strong>1,000 rows</strong> and <strong>14 columns</strong>.
+        This web application displays a sample of 100 records for easier viewing.
+    </p>
+</section>
+
+<section class="card">
+    <h2>Variables Included</h2>
+    <ul class="info-list">
+        <li><strong>Student_ID:</strong> Unique student identifier</li>
+        <li><strong>Age, Gender:</strong> Demographic information</li>
+        <li><strong>Heart_Rate:</strong> Physiological heart rate measurement</li>
+        <li><strong>Blood_Pressure_Systolic / Blood_Pressure_Diastolic:</strong> Blood pressure values</li>
+        <li><strong>Stress_Level_Biosensor:</strong> Stress level measured through sensors</li>
+        <li><strong>Stress_Level_Self_Report:</strong> Self-reported stress score</li>
+        <li><strong>Physical_Activity:</strong> Low, Moderate, or High</li>
+        <li><strong>Sleep_Quality:</strong> Poor, Moderate, or Good</li>
+        <li><strong>Mood:</strong> Happy, Neutral, or Stressed</li>
+        <li><strong>Study_Hours / Project_Hours:</strong> Workload-related time variables</li>
+        <li><strong>Health_Risk_Level:</strong> Low, Moderate, or High</li>
+    </ul>
+</section>
+{% endblock %}
