@@ -12,7 +12,7 @@ This project highlights the integration of data analytics concepts with web deve
 ## Data Files
 - `student_health_data.csv`: Raw dataset used for data ingestion and preprocessing  
 - `student_health_data.db`: SQLite database used by the Flask application  
-- `project.ipynb`: Jupyter Notebook used for data cleaning, preprocessing, and exploratory data analysis (EDA), forming the foundation for the web application  
+- `project.ipynb`: Jupyter Notebook used for importing the raw dataset, creating the SQLite database, and preparing the data displayed in the Flask web application
 
 Contents
 - [Features](#features)
