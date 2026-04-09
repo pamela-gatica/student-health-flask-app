@@ -7,8 +7,8 @@ This project demonstrates how to build a simple end-to-end data application comb
 
 ## Application Preview
 <p align="center">
-  <img src="images/home.png" width="45%">
-  <img src="images/data.png" width="45%">
+  <img src="images/home.png" width="50%">
+  <img src="images/data.png" width="50%">
 </p>
 
 Contents
