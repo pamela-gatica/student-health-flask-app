@@ -92,7 +92,7 @@ student-health-flask-app/
    venv\Scripts\activate      # Windows
    ```
 ### 3. Install dependencies:
-    pip install flask
+    pip install -r requirements.txt
 ### 4. Run the application:
     python app.py
 ### 5. Open in browser:
