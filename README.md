@@ -71,12 +71,12 @@ student-health-flask-app/
 ```
 ## Application Routes
 
-| Route  | Description |
-|--------|-------------|
-| /      |   Homepage  |
+| Route  |           Description           |
+|--------|---------------------------------|
+| /      | Homepage                        |
 | /about | Dataset and project description |
-| /data  | Displays student health data |
-| /group | Contributors information |
+| /data  | Displays student health data    |
+| /group | Contributors information        |
 ```
 
 ## Installation & Setup
