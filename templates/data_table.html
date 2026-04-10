@@ -1,28 +1,33 @@
 {% extends "base.html" %}
 
-{% block title %}Data | Student Health Data Web App{% endblock %}
+{% block title %}Data | Student Health Data{% endblock %}
+{% block nav_data %}active{% endblock %}
 
 {% block content %}
-<section class="card">
-    <h1>Student Health Data</h1>
-    <p>
-        The table below shows a sample of student health and wellness records
-        retrieved from the SQLite database.
-    </p>
+<section class="page-header">
+    <h1 class="page-title">Student Health Data</h1>
+    <p class="page-subtitle">Displaying a sample of 100 records from the full 1,000-row dataset.</p>
+    <hr class="page-divider">
 </section>
+
+<div class="info-pills">
+    <span class="info-pill">100 records</span>
+    <span class="info-pill">14 columns</span>
+    <span class="info-pill">Source: Kaggle</span>
+</div>
 
 <div class="table-wrapper">
     <table>
         <thead>
             <tr>
-                <th>Student ID</th>
+                <th>ID</th>
                 <th>Age</th>
                 <th>Gender</th>
                 <th>Heart Rate</th>
-                <th>Systolic BP</th>
-                <th>Diastolic BP</th>
-                <th>Stress (Biosensor)</th>
-                <th>Stress (Self-Report)</th>
+                <th>BP Systolic</th>
+                <th>BP Diastolic</th>
+                <th>Stress (Sensor)</th>
+                <th>Stress (Self)</th>
                 <th>Physical Activity</th>
                 <th>Sleep Quality</th>
                 <th>Mood</th>
@@ -37,17 +42,26 @@
                 <td>{{ student["Student_ID"] }}</td>
                 <td>{{ student["Age"] }}</td>
                 <td>{{ student["Gender"] }}</td>
-                <td>{{ student["Heart_Rate"] }}</td>
-                <td>{{ student["Blood_Pressure_Systolic"] }}</td>
-                <td>{{ student["Blood_Pressure_Diastolic"] }}</td>
-                <td>{{ student["Stress_Level_Biosensor"] }}</td>
-                <td>{{ student["Stress_Level_Self_Report"] }}</td>
+                <td>{{ "%.1f"|format(student["Heart_Rate"]) }}</td>
+                <td>{{ "%.1f"|format(student["Blood_Pressure_Systolic"]) }}</td>
+                <td>{{ "%.1f"|format(student["Blood_Pressure_Diastolic"]) }}</td>
+                <td>{{ "%.2f"|format(student["Stress_Level_Biosensor"]) }}</td>
+                <td>{{ "%.2f"|format(student["Stress_Level_Self_Report"]) }}</td>
                 <td>{{ student["Physical_Activity"] }}</td>
                 <td>{{ student["Sleep_Quality"] }}</td>
                 <td>{{ student["Mood"] }}</td>
-                <td>{{ student["Study_Hours"] }}</td>
-                <td>{{ student["Project_Hours"] }}</td>
-                <td>{{ student["Health_Risk_Level"] }}</td>
+                <td>{{ "%.2f"|format(student["Study_Hours"]) }}</td>
+                <td>{{ "%.2f"|format(student["Project_Hours"]) }}</td>
+                <td>
+                    {% set risk = student["Health_Risk_Level"] %}
+                    <span class="risk-badge
+                        {% if risk == 'Low' %}risk-low
+                        {% elif risk == 'Moderate' %}risk-moderate
+                        {% elif risk == 'High' %}risk-high
+                        {% endif %}">
+                        {{ risk }}
+                    </span>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
