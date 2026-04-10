@@ -1,29 +1,39 @@
 {% extends "base.html" %}
 
-{% block title %}Home | Student Health Data Web App{% endblock %}
+{% block title %}Home | Student Health Data{% endblock %}
+{% block nav_home %}active{% endblock %}
 
 {% block content %}
 <section class="hero">
-    <h1>Student Health Data Web App</h1>
-    <p>
-        A lightweight Flask and SQLite web application for exploring and analyzing
-        student health and wellness data, including stress levels, sleep quality,
-        physical activity, mood, and health risk indicators.
+    <span class="hero-badge">PYTHON · FLASK · SQLITE</span>
+
+    <h1 class="hero-title">Student Health<br>& Wellness Data</h1>
+
+    <p class="hero-subtitle">
+        A lightweight Flask and SQLite web application for exploring and analyzing student health and wellness data,
+        including stress level, sleep quality, physical activity, mood, and health risk indicators.
     </p>
 
-    <div class="button-group">
-        <a href="/about" class="btn btn-primary">Explore the Dataset</a>
-        <a href="/data" class="btn btn-secondary">View Data Table</a>
-    </div>
-</section>
+    <p class="hero-note">
+        Built with Python, Flask, HTML, and CSS, this project showcases database integration,
+        multi-page web design, and data-driven web development.
+    </p>
 
-<section class="card">
-    <h2>Project Highlights</h2>
-    <ul class="info-list">
-        <li>Built with Python, Flask, SQLite, HTML, and CSS</li>
-        <li>Displays structured student wellness data in a web interface</li>
-        <li>Demonstrates database integration and multi-page application design</li>
-        <li>Designed as a portfolio project to showcase backend and data skills</li>
-    </ul>
+    <div class="feature-grid">
+        <a href="/about" class="feature-card">
+            <h3 class="card-title"><span class="card-emoji">📋</span> About the Dataset</h3>
+            <p>Data source, structure, and field descriptions.</p>
+        </a>
+
+        <a href="/data" class="feature-card">
+            <h3 class="card-title"><span class="card-emoji">📊</span> View Data</h3>
+            <p>Browse a sample of 100 student health records.</p>
+        </a>
+
+        <a href="/group" class="feature-card">
+            <h3 class="card-title"><span class="card-emoji">👥</span> Our Team</h3>
+            <p>Meet the contributors behind this project.</p>
+        </a>
+    </div>
 </section>
 {% endblock %}
