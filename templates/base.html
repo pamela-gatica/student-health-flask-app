@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Student Health App{% endblock %}</title>
+    <title>{% block title %}Student Health Data{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header class="site-header">
         <div class="container nav-container">
             <div class="brand">
-                <a href="/">Student Health Data Web App</a>
+                <a href="/">
+                    <span class="brand-main">Student Health Data</span>
+                    <span class="brand-dot">·</span>
+                    <span class="brand-accent">Web App</span>
+                </a>
             </div>
             <nav class="nav-links">
-                <a href="/">Home</a>
-                <a href="/about">About</a>
-                <a href="/data">Data</a>
-                <a href="/group">Credits</a>
+                <a href="/" class="{% block nav_home %}{% endblock %}">Home</a>
+                <a href="/about" class="{% block nav_about %}{% endblock %}">About</a>
+                <a href="/data" class="{% block nav_data %}{% endblock %}">Data</a>
+                <a href="/group" class="{% block nav_group %}{% endblock %}">Team</a>
             </nav>
         </div>
     </header>
@@ -26,9 +30,7 @@
     </main>
 
     <footer class="site-footer">
-        <div class="container">
-            <p>Built with Flask and SQLite | Portfolio Project</p>
-        </div>
+        © 2026 · <span>Built with Flask and SQLite</span> · Portfolio Project
     </footer>
 </body>
 </html>
