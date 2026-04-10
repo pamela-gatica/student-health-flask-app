@@ -1,22 +1,40 @@
 {% extends "base.html" %}
 
-{% block title %}Credits | Student Health Data Web App{% endblock %}
+{% block title %}Team | Student Health Data{% endblock %}
+{% block nav_group %}active{% endblock %}
 
 {% block content %}
-<section class="card">
-    <h1>Project Credits</h1>
-    <p>
-        This project was originally developed as a group academic assignment.
+<section class="page-header">
+    <h1 class="page-title">Project Credits</h1>
+    <p class="page-subtitle">Acknowledging contributors and project evolution.</p>
+    <hr class="page-divider">
+</section>
 
-        It has been further enhanced and refined by Pamela Gatica as an individual portfolio project, 
+<section class="section-block">
+    <span class="section-label">Project Evolution</span>
+    <p>
+        This project was originally developed as a collaborative academic assignment.
+        It has been further enhanced and refined by <strong>Pamela Gatica</strong> as an individual portfolio project,
         with improvements in design, structure, and functionality.
     </p>
+</section>
 
-    <ul class="credit-list">
-        <li>Pamela Gatica (Project Enhancement & Development)</li>
-        <li>Ivy Hoetu</li>
-        <li>Javid Mehdiyev</li>
-        <li>Fawaz Dimachki</li>
-    </ul>
+<section class="section-block">
+    <span class="section-label">Contributors</span>
+
+    <div class="field-list">
+        <div class="field-item">
+            <strong>Pamela Gatica</strong> — Project Enhancement & Development
+        </div>
+        <div class="field-item">
+            <strong>Ivy Hoetu</strong>
+        </div>
+        <div class="field-item">
+            <strong>Javid Mehdiyev</strong>
+        </div>
+        <div class="field-item">
+            <strong>Fawaz Dimachki</strong>
+        </div>
+    </div>
 </section>
 {% endblock %}
