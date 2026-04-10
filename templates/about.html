@@ -1,43 +1,56 @@
 {% extends "base.html" %}
 
-{% block title %}About | Student Health Data Web App{% endblock %}
+{% block title %}About | Student Health Data{% endblock %}
+{% block nav_about %}active{% endblock %}
 
 {% block content %}
-<section class="card">
-    <h1>About the Dataset</h1>
-    <p>
-        This project uses the <strong>Student Health Data</strong> dataset from Kaggle.
-        It includes wellness and workload-related indicators that can be used to explore
-        student health patterns and potential risk levels.
-    </p>
+<section class="page-header">
+    <h1 class="page-title">About the Database</h1>
+    <p class="page-subtitle">Dataset source, context, and field-level documentation.</p>
+    <hr class="page-divider">
+</section>
 
+<section class="section-block">
+    <span class="section-label">Source</span>
+    <h3>Kaggle — Student Health Data</h3>
     <p>
-        <strong>Dataset source:</strong>
         <a href="https://www.kaggle.com/datasets/ziya07/student-health-data" target="_blank">
-            Kaggle - Student Health Data
+            kaggle.com/datasets/ziya07/student-health-data
         </a>
-    </p>
-
-    <p>
-        The original dataset contains <strong>1,000 rows</strong> and <strong>14 columns</strong>.
-        This web application displays a sample of 100 records for easier viewing.
     </p>
 </section>
 
-<section class="card">
-    <h2>Variables Included</h2>
-    <ul class="info-list">
-        <li><strong>Student_ID:</strong> Unique student identifier</li>
-        <li><strong>Age, Gender:</strong> Demographic information</li>
-        <li><strong>Heart_Rate:</strong> Physiological heart rate measurement</li>
-        <li><strong>Blood_Pressure_Systolic / Blood_Pressure_Diastolic:</strong> Blood pressure values</li>
-        <li><strong>Stress_Level_Biosensor:</strong> Stress level measured through sensors</li>
-        <li><strong>Stress_Level_Self_Report:</strong> Self-reported stress score</li>
-        <li><strong>Physical_Activity:</strong> Low, Moderate, or High</li>
-        <li><strong>Sleep_Quality:</strong> Poor, Moderate, or Good</li>
-        <li><strong>Mood:</strong> Happy, Neutral, or Stressed</li>
-        <li><strong>Study_Hours / Project_Hours:</strong> Workload-related time variables</li>
-        <li><strong>Health_Risk_Level:</strong> Low, Moderate, or High</li>
-    </ul>
+<section class="section-block">
+    <span class="section-label">Description</span>
+    <div class="quote-box">
+        “This file, student_health_data.csv, contains data for assessing health risks among college students involved in academic and entrepreneurial activities. The data is structured to support machine learning models that predict health conditions related to stress, physical strain, and mental well-being. Each row represents an individual student’s health, workload, and lifestyle characteristics.”
+    </div>
+</section>
+
+<section class="section-block">
+    <span class="section-label">Observations</span>
+    <h3>Sample displayed on this app</h3>
+    <p>
+        The original dataset contains <strong>1,000 rows</strong> and <strong>14 columns</strong>.
+        This web application displays a sample of <strong>100 rows</strong> with all original columns.
+    </p>
+</section>
+
+<section class="section-block">
+    <span class="section-label">Data Structure</span>
+    <h3>Field Descriptions</h3>
+
+    <div class="field-list">
+        <div class="field-item"><strong>Student_ID</strong> — Unique identifier for each student.</div>
+        <div class="field-item"><strong>Age / Gender</strong> — Demographic information relevant to physiological data interpretation.</div>
+        <div class="field-item"><strong>Heart_Rate</strong> — Heart rate measurement.</div>
+        <div class="field-item"><strong>Blood_Pressure_Systolic / Blood_Pressure_Diastolic</strong> — Blood pressure indicators.</div>
+        <div class="field-item"><strong>Stress_Level_Biosensor / Stress_Level_Self_Report</strong> — Measured and self-reported stress levels.</div>
+        <div class="field-item"><strong>Physical_Activity</strong> — Low, Moderate, or High.</div>
+        <div class="field-item"><strong>Sleep_Quality</strong> — Poor, Moderate, or Good.</div>
+        <div class="field-item"><strong>Mood</strong> — Happy, Neutral, or Stressed.</div>
+        <div class="field-item"><strong>Study_Hours / Project_Hours</strong> — Weekly academic and project workload.</div>
+        <div class="field-item"><strong>Health_Risk_Level</strong> — Low, Moderate, or High health risk category.</div>
+    </div>
 </section>
 {% endblock %}
