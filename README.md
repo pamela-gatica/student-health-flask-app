@@ -6,13 +6,8 @@ A lightweight Flask-based web application that integrates SQLite to explore and 
 This project demonstrates the integration of data analytics and backend development, transforming raw data into an interactive and user-friendly web experience.
 
 ## Application Preview
-<p align="center">
-  <img src="images/home.png" width="700">
-</p>
-
-<p align="center">
-  <img src="images/data.png" width="700">
-</p>
+<img src="images/home.png" width="500">
+<img src="images/data.png" width="500">
 
 ## Data Files
 - `student_health_data.csv`: Raw dataset used for data ingestion and preprocessing  
