@@ -14,7 +14,7 @@ This project demonstrates the integration of data analytics and backend developm
 - `student_health_data.db`: SQLite database used by the Flask application  
 - `project.ipynb`: Jupyter Notebook used for importing the raw dataset, creating the SQLite database, and preparing the data displayed in the Flask web application
 
-Table of Contents
+## Table of Contents
 - [Features](#features)
 - [Dataset](#dataset)
 - [Tech Stack](#tech-stack)
