@@ -1,8 +1,6 @@
 # Student Health Data Web App
 
-## Live Demo
-
-👉 https://student-health-app.onrender.com
+## Live Demo 👉 https://student-health-app.onrender.com
 
 ## Overview
 A lightweight Flask-based web application that integrates SQLite to explore and analyze student health and wellness data. The application provides an intuitive interface to visualize key indicators such as stress levels, sleep quality, physical activity, mood, and overall health risk.
