@@ -91,10 +91,10 @@ student-health-flask-app/
 ```
 | Route  |           Description           |
 |--------|---------------------------------|
-| /      | Homepage                        |
+| /home  | Homepage                        |
 | /about | Dataset and project description |
 | /data  | Displays student health data    |
-| /group | Contributors information        |
+| /team  | Contributors information        |
 ```
 
 ## Installation & Setup
