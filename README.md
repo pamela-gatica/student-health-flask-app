@@ -6,6 +6,15 @@ A lightweight Flask-based web application that integrates SQLite to explore and 
 
 This project demonstrates the integration of data analytics and backend development, transforming raw data into an interactive and user-friendly web experience.
 
+## Deployment
+
+This application is deployed on Render and automatically updates with every push to the main branch.
+
+- Platform: Render
+- Deployment type: Web Service
+- Continuous Deployment: Enabled (auto-deploy on push)
+
+
 ## Application Preview
 <p align="center">
   <img src="images/home.png" width="800">
