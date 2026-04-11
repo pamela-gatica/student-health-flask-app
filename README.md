@@ -42,12 +42,12 @@ The dataset contains student health and lifestyle indicators, including:
 - Heart Rate
 - Blood Pressure (Systolic & Diastolic)
 - Stress Level (Biosensor & Self-Report)
-- Physical Activity
-- Sleep Quality
-- Mood
+- Physical Activity (Low, Moderate, High)
+- Sleep Quality (Poor, Moderate, Good)
+- Mood (Happy, Neutral, Stressed)
 - Study Hours
 - Project Hours
-- Health Risk Level
+- Health Risk Level (Low, Moderate, High)
 
 Source: [Kaggle - Student Health Data](https://www.kaggle.com/datasets/ziya07/student-health-data)
 
