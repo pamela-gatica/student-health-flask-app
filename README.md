@@ -41,7 +41,7 @@ This project demonstrates the integration of data analytics and backend developm
 - Modular and maintainable code structure
 
 ## Dataset
-The dataset contains student health and lifestyle indicators, including:
+The dataset contains student health and lifestyle indicators used to assess health risks among college students.
 
 - Age and Gender
 - Heart Rate
@@ -96,7 +96,7 @@ student-health-flask-app/
 ```
 | Route  |           Description           |
 |--------|---------------------------------|
-| /home  | Homepage                        |
+| /      | Homepage                        |
 | /about | Dataset and project description |
 | /data  | Displays student health data    |
 | /team  | Contributors information        |
@@ -115,6 +115,7 @@ student-health-flask-app/
    venv\Scripts\activate      # Windows
    ```
 ### 3. Install dependencies:
+    pip install --upgrade pip
     pip install -r requirements.txt
 ### 4. Run the application:
     python app.py
