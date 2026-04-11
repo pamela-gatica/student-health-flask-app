@@ -8,11 +8,9 @@ This project demonstrates the integration of data analytics and backend developm
 
 ## Deployment
 
-This application is deployed on Render and automatically updates with every push to the main branch.
+The application is deployed on Render, providing a live and continuously updated environment.
 
-- Platform: Render
-- Deployment type: Web Service
-- Continuous Deployment: Enabled (auto-deploy on push)
+Every change pushed to the main branch triggers an automatic redeployment, ensuring the latest version is always available online.
 
 
 ## Application Preview
