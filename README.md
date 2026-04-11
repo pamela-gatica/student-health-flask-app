@@ -1,9 +1,9 @@
 # Student Health Data Web App
 
 ## Overview
-A lightweight Flask-based web application that integrates SQLite to explore and analyze student health and wellness data. The application provides an intuitive interface to view key indicators such as stress levels, sleep quality, physical activity, mood, and overall health risk.
+A lightweight Flask-based web application that integrates SQLite to explore and analyze student health and wellness data. The application provides an intuitive interface to visualize key indicators such as stress levels, sleep quality, physical activity, mood, and overall health risk.
 
-This project highlights the integration of data analytics concepts with web development to deliver accessible and interactive data exploration.
+This project demonstrates the integration of data analytics and backend development, transforming raw data into an interactive and user-friendly web experience.
 
 ## Application Preview
 <img src="images/home.png" width="700">
@@ -14,10 +14,11 @@ This project highlights the integration of data analytics concepts with web deve
 - `student_health_data.db`: SQLite database used by the Flask application  
 - `project.ipynb`: Jupyter Notebook used for importing the raw dataset, creating the SQLite database, and preparing the data displayed in the Flask web application
 
-Contents
+Table of Contents
 - [Features](#features)
 - [Dataset](#dataset)
 - [Tech Stack](#tech-stack)
+- [Data Workflow](#data-workflow)
 - [Project Structure](#project-structure)
 - [Application Routes](#application-routes)
 - [Installation & Setup](#installation--setup)
@@ -51,32 +52,43 @@ The dataset contains student health and lifestyle indicators, including:
 Source: [Kaggle - Student Health Data](https://www.kaggle.com/datasets/ziya07/student-health-data)
 
 ## Tech Stack
-- Python
-- Flask
-- SQLite
-- HTML / Jinja2 Templates
-- Pathlib
+- Python (Backend logic)
+- Flask (Web framework)
+- SQLite (Database)
+- HTML / CSS (Frontend)
+- Jinja2 (Templating)
+- Pandas (Data processing)
+
+## Data Workflow
+- Raw data is ingested from a CSV dataset  
+- Data preprocessing and transformation are performed using Python (Pandas)  
+- Processed data is stored in an SQLite relational database  
+- Flask serves as the backend framework to query and retrieve data  
+- Jinja2 templates dynamically render the data into HTML views  
+- The frontend presents structured data through an interactive web interface  
 
 ## Project Structure
 ```
 student-health-flask-app/
 │
-├── app.py
-├── student_health_data.db
-├── templates/
-│   ├── about.html
-│   ├── base.html
-│   ├── data_table.html
-│   ├── homepage.html
-│   └── group_info.html
-└── static/
-    └── style.css
+├── app.py                      # Main Flask application
+├── student_health_data.db      # SQLite database
+├── project.ipynb               # Data cleaning and database creation
+├── requirements.txt            # Project dependencies
+│
+├── templates/                  # HTML templates (Jinja2)
+│   ├── base.html               # Base layout
+│   ├── homepage.html           # Landing page
+│   ├── about.html              # Dataset description
+│   ├── data_table.html         # Data visualization page
+│   └── group_info.html         # Project contributors
+│
+└── static/                     # Static files
+    └── style.css               # CSS styling
 ```
 
 ## Application Routes
 ```
-## Application Routes
-
 | Route  |           Description           |
 |--------|---------------------------------|
 | /      | Homepage                        |
@@ -122,10 +134,10 @@ including improvements in:
 - Writing clean and maintainable backend code
 
 ## Key Highlights
-- End-to-end data application using Python and Flask  
+- Full-stack data application using Python and Flask  
 - Integration of structured datasets with a relational database  
-- Clean UI design for improved data accessibility  
-- Transformation of an academic project into a professional portfolio piece  
+- Clean and modern UI design for data accessibility  
+- Conversion of an academic project into a professional portfolio application  
 
 ## Future Improvements
 - Add filtering options (by gender, mood, health risk level)
@@ -138,8 +150,8 @@ including improvements in:
 
 **Pamela Gatica**  
 Data Analytics Student | Background in Psychology & HR  
-
 - Interested in data analytics, backend development, and data-driven applications  
-- Currently building portfolio projects combining Python, data, and web development  
+- Currently building portfolio projects combining Python, data, and web development
+  
 ## Final Note
 This project is part of my journey into data analytics and backend development, focusing on transforming raw data into accessible and meaningful insights through simple web applications.
