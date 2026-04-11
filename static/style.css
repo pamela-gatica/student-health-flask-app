@@ -100,7 +100,7 @@ main {
 }
 
 .site-footer:hover span {
-    color: #7c3aed; /* morado */
+    color: #7c3aed; 
     text-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
 }
 
@@ -133,10 +133,8 @@ main {
     font-family: Georgia, "Times New Roman", serif;
     line-height: 1.15;
 
-    /* fallback (SIEMPRE visible) */
     color: #1f1b63;
 
-    /* efecto pro */
     background: linear-gradient(90deg, #0d9488 35%, #7c3aed 60%, #1f1b63 95%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -334,9 +332,19 @@ main {
     padding: 12px 14px;
     color: #334155;
     line-height: 1.6;
+    font-size: 0.9rem;   
+    line-height: 1.5;
+    transition: all 0.2s ease;
+}
+
+.field-item:hover {
+    transform: translateX(4px);
+    background-color: rgba(45, 212, 191, 0.08);
 }
 
 .field-item strong {
+    font-size: 0.9rem;
+    font-weight: 600;   
     color: #0f172a;
 }
 
