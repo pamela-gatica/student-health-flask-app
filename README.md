@@ -1,4 +1,4 @@
-# Student Health Data Web App [![Live App](https://img.shields.io/badge/Live%20App-Click%20Here-00c2a8?style=for-the-badge)](https://student-health-app.onrender.com)
+# Student Health Data Web App    [![Live App](https://img.shields.io/badge/Live%20App-Click%20Here-00c2a8?style=for-the-badge)](https://student-health-app.onrender.com)
 
 
 ## Overview
