@@ -1,5 +1,7 @@
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 RISK_ORDER = ["Low", "Moderate", "High"]
 RISK_COLORS = {"Low": "#10b981", "Moderate": "#f59e0b", "High": "#ef4444"}
@@ -37,39 +39,22 @@ def _risk_percentages(df, group_col, order):
     return table.reset_index().melt(id_vars=group_col, var_name="Health_Risk_Level", value_name="Percentage")
 
 
-def _mini_bar(rate, label, color, y_max, show_y_title):
-    data = rate.reset_index()
-    data.columns = ["Category", "High Risk %"]
-    fig = px.bar(data, x="Category", y="High Risk %", color_discrete_sequence=[color])
-    fig.update_traces(marker_cornerradius=4)
-    fig.update_xaxes(title=None)
-    fig.update_yaxes(title="High Risk %" if show_y_title else None, range=[0, y_max])
-    fig.update_layout(
-        font=dict(family="Arial, sans-serif", color="#334155", size=11),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-        margin=dict(t=6, b=30, l=44 if show_y_title else 28, r=6),
-        height=230,
-        showlegend=False,
-        autosize=True,
-    )
-    html = fig.to_html(full_html=False, include_plotlyjs=False, config={"responsive": True, "displayModeBar": False})
-    return f'<div class="mini-chart"><div class="mini-chart-label">{label}</div>{html}</div>'
-
-
-def _high_risk_factors_card(df):
+def _high_risk_factors_fig(df):
     activity_rate = df.groupby("Physical_Activity")["Health_Risk_Level"].apply(lambda s: (s == "High").mean() * 100).reindex(ACTIVITY_ORDER)
     sleep_rate = df.groupby("Sleep_Quality")["Health_Risk_Level"].apply(lambda s: (s == "High").mean() * 100).reindex(SLEEP_ORDER)
     mood_rate = df.groupby("Mood")["Health_Risk_Level"].apply(lambda s: (s == "High").mean() * 100).reindex(MOOD_ORDER)
-    y_max = max(activity_rate.max(), sleep_rate.max(), mood_rate.max()) * 1.15
 
-    title_html = '<div class="mini-chart-title"><b>High Risk Rate by Activity, Sleep &amp; Mood</b></div>'
-    row_html = (
-        _mini_bar(activity_rate, "Physical Activity", "#ef4444", y_max, True)
-        + _mini_bar(sleep_rate, "Sleep Quality", "#f59e0b", y_max, False)
-        + _mini_bar(mood_rate, "Mood", "#8b5cf6", y_max, False)
+    fig = make_subplots(
+        rows=1, cols=3, shared_yaxes=True, horizontal_spacing=0.06,
+        subplot_titles=["Physical Activity", "Sleep Quality", "Mood"],
     )
-    return f'{title_html}<div class="mini-chart-row">{row_html}</div>'
+    fig.add_trace(go.Bar(x=ACTIVITY_ORDER, y=activity_rate.values, marker_color="#ef4444", showlegend=False), row=1, col=1)
+    fig.add_trace(go.Bar(x=SLEEP_ORDER, y=sleep_rate.values, marker_color="#f59e0b", showlegend=False), row=1, col=2)
+    fig.add_trace(go.Bar(x=MOOD_ORDER, y=mood_rate.values, marker_color="#8b5cf6", showlegend=False), row=1, col=3)
+
+    fig.update_yaxes(title_text="High Risk %", row=1, col=1)
+    fig.update_annotations(font=dict(family="Arial, sans-serif", size=12, color="#475467"))
+    return fig
 
 
 def build_dashboard(df):
@@ -155,7 +140,7 @@ def build_dashboard(df):
         "stress_risk": _style(fig_stress_risk, "Average Stress by Health Risk Level"),
         "risk_sleep": _style(fig_risk_sleep, "Health Risk by Sleep Quality"),
         "risk_activity": _style(fig_risk_activity, "Health Risk by Physical Activity"),
-        "high_risk_factors": _high_risk_factors_card(df),
+        "high_risk_factors": _style(_high_risk_factors_fig(df), "High Risk Rate by Activity, Sleep & Mood"),
         "study_hours_risk": _style(fig_study_risk, "Study Hours by Health Risk Level"),
     }
 

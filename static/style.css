@@ -416,36 +416,6 @@ tr:hover {
     min-height: 380px;
 }
 
-.chart-card .js-plotly-plot .main-svg {
-    filter: drop-shadow(0 4px 6px rgba(15, 23, 42, 0.12));
-}
-
-.mini-chart-title {
-    text-align: center;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #1f1b63;
-    margin: 6px 0 4px;
-}
-
-.mini-chart-row {
-    display: flex;
-    gap: 4px;
-}
-
-.mini-chart {
-    flex: 1;
-    min-width: 0;
-}
-
-.mini-chart-label {
-    text-align: center;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: #475467;
-}
-
 .insights-grid {
     margin-top: 20px;
     display: grid;
