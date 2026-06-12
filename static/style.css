@@ -399,6 +399,48 @@ tr:hover {
     background: #ecfeff;
 }
 
+/* PAGINATION */
+.pagination {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.page-btn {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 10px;
+    background: white;
+    border: 1px solid #dbe3ea;
+    color: #1f2937;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover {
+    background: rgba(45, 212, 191, 0.12);
+    border-color: #2dd4bf;
+    color: #0d9488;
+}
+
+.page-btn.disabled {
+    color: #c1c8d2;
+    cursor: default;
+    pointer-events: none;
+}
+
+.page-info {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #475467;
+    padding: 0 6px;
+}
+
 /* RISK BADGES */
 .risk-badge,
 .risk {

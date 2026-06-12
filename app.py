@@ -1,11 +1,14 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import sqlite3
 import pathlib
+import math
 
 base_path = pathlib.Path(__file__).parent
 db_path = base_path / "student_health_data.db"
 
 app = Flask(__name__)
+
+PER_PAGE = 25
 
 
 def get_db_connection():
@@ -28,13 +31,34 @@ def about_page():
 def data_page():
     try:
         conn = get_db_connection()
+
+        total = conn.execute("SELECT COUNT(*) FROM student_health").fetchone()[0]
+        total_pages = max(1, math.ceil(total / PER_PAGE))
+
+        page = request.args.get("page", 1, type=int)
+        page = max(1, min(page, total_pages))
+        offset = (page - 1) * PER_PAGE
+
         students = conn.execute("""
             SELECT *
             FROM student_health
-            LIMIT 100
-        """).fetchall()
+            ORDER BY Student_ID
+            LIMIT ? OFFSET ?
+        """, (PER_PAGE, offset)).fetchall()
         conn.close()
-        return render_template("data_table.html", students=students)
+
+        start = offset + 1 if total else 0
+        end = min(offset + PER_PAGE, total)
+
+        return render_template(
+            "data_table.html",
+            students=students,
+            page=page,
+            total_pages=total_pages,
+            total=total,
+            start=start,
+            end=end,
+        )
     except sqlite3.Error as e:
         return f"Database error: {e}", 500
 
