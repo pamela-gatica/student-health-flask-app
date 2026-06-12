@@ -10,6 +10,15 @@ app = Flask(__name__)
 
 PER_PAGE = 25
 
+# Maps URL query param names to the columns they filter on
+FILTER_FIELDS = {
+    "gender": "Gender",
+    "activity": "Physical_Activity",
+    "sleep": "Sleep_Quality",
+    "mood": "Mood",
+    "risk": "Health_Risk_Level",
+}
+
 
 def get_db_connection():
     conn = sqlite3.connect(db_path)
@@ -32,19 +41,44 @@ def data_page():
     try:
         conn = get_db_connection()
 
-        total = conn.execute("SELECT COUNT(*) FROM student_health").fetchone()[0]
+        # Build the WHERE clause from any filters present in the query string
+        filters = {}
+        where_clauses = []
+        params = []
+        for param, column in FILTER_FIELDS.items():
+            value = request.args.get(param, "").strip()
+            if value:
+                filters[param] = value
+                where_clauses.append(f"{column} = ?")
+                params.append(value)
+        where_sql = f"WHERE {' AND '.join(where_clauses)}" if where_clauses else ""
+
+        total = conn.execute(
+            f"SELECT COUNT(*) FROM student_health {where_sql}", params
+        ).fetchone()[0]
         total_pages = max(1, math.ceil(total / PER_PAGE))
 
         page = request.args.get("page", 1, type=int)
         page = max(1, min(page, total_pages))
         offset = (page - 1) * PER_PAGE
 
-        students = conn.execute("""
+        students = conn.execute(f"""
             SELECT *
             FROM student_health
+            {where_sql}
             ORDER BY Student_ID
             LIMIT ? OFFSET ?
-        """, (PER_PAGE, offset)).fetchall()
+        """, params + [PER_PAGE, offset]).fetchall()
+
+        # Distinct values to populate each filter dropdown
+        filter_options = {
+            param: [
+                row[0] for row in
+                conn.execute(f"SELECT DISTINCT {column} FROM student_health ORDER BY {column}").fetchall()
+            ]
+            for param, column in FILTER_FIELDS.items()
+        }
+
         conn.close()
 
         start = offset + 1 if total else 0
@@ -58,6 +92,8 @@ def data_page():
             total=total,
             start=start,
             end=end,
+            filters=filters,
+            filter_options=filter_options,
         )
     except sqlite3.Error as e:
         return f"Database error: {e}", 500

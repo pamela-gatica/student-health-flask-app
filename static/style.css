@@ -399,6 +399,94 @@ tr:hover {
     background: #ecfeff;
 }
 
+/* FILTERS */
+.filter-form {
+    margin-top: 4px;
+    margin-bottom: 20px;
+    padding: 16px 18px;
+    background: white;
+    border: 1px solid #dbe3ea;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 150px;
+}
+
+.filter-group label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #2bbdb1;
+}
+
+.filter-group select {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #dbe3ea;
+    background: #f8fafc;
+    color: #1f2937;
+    font-size: 0.88rem;
+    font-family: inherit;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.filter-btn {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: 10px;
+    border: 1px solid #2dd4bf;
+    background: #2dd4bf;
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    background: #25a197;
+    border-color: #25a197;
+    color: white;
+}
+
+.filter-clear {
+    background: white;
+    border-color: #dbe3ea;
+    color: #475467;
+}
+
+.filter-clear:hover {
+    background: #fee2e2;
+    border-color: #fca5a5;
+    color: #991b1b;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 30px;
+    color: #667085;
+    font-weight: 600;
+    background: white;
+    border: 1px solid #dbe3ea;
+    border-radius: 14px;
+}
+
 /* PAGINATION */
 .pagination {
     margin-top: 18px;
