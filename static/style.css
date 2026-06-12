@@ -412,8 +412,12 @@ tr:hover {
     border: 1px solid #dbe3ea;
     border-radius: 14px;
     padding: 10px;
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10), 0 2px 6px rgba(15, 23, 42, 0.06);
     min-height: 380px;
+}
+
+.chart-card .js-plotly-plot .main-svg {
+    filter: drop-shadow(0 6px 8px rgba(15, 23, 42, 0.15));
 }
 
 .insights-grid {

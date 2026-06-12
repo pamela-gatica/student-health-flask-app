@@ -5,6 +5,7 @@ from plotly.subplots import make_subplots
 
 RISK_ORDER = ["Low", "Moderate", "High"]
 RISK_COLORS = {"Low": "#10b981", "Moderate": "#f59e0b", "High": "#ef4444"}
+RISK_COLORS_DARK = {"Low": "#047857", "Moderate": "#b45309", "High": "#b91c1c"}
 
 SLEEP_ORDER = ["Poor", "Moderate", "Good"]
 ACTIVITY_ORDER = ["Low", "Moderate", "High"]
@@ -16,7 +17,10 @@ AGE_LABELS = ["18-19", "20-21", "22-23", "24"]
 
 
 def _style(fig, title):
-    fig.update_traces(selector=dict(type="bar"), marker_cornerradius=4)
+    fig.update_traces(
+        selector=dict(type="bar"), marker_cornerradius=4,
+        marker_line_color="rgba(15, 23, 42, 0.22)", marker_line_width=1.2,
+    )
     fig.update_traces(selector=dict(type="pie"), marker=dict(line=dict(color="white", width=2)))
     fig.update_layout(
         title=dict(
@@ -61,14 +65,22 @@ def build_dashboard(df):
     df = df.copy()
     df["Age_Group"] = pd.cut(df["Age"], bins=AGE_BINS, labels=AGE_LABELS)
 
-    # Overall risk distribution
-    risk_counts = df["Health_Risk_Level"].value_counts().reindex(RISK_ORDER).reset_index()
-    risk_counts.columns = ["Health_Risk_Level", "Count"]
-    fig_risk_dist = px.pie(
-        risk_counts, values="Count", names="Health_Risk_Level",
-        color="Health_Risk_Level", color_discrete_map=RISK_COLORS,
-        category_orders={"Health_Risk_Level": RISK_ORDER}, hole=0.45,
-    )
+    # Overall risk distribution (with a darker "rim" trace behind for a 3D depth effect)
+    risk_counts = df["Health_Risk_Level"].value_counts().reindex(RISK_ORDER)
+    labels = risk_counts.index.tolist()
+    values = risk_counts.values
+    fig_risk_dist = go.Figure()
+    fig_risk_dist.add_trace(go.Pie(
+        labels=labels, values=values, hole=0.45, sort=False,
+        marker=dict(colors=[RISK_COLORS_DARK[l] for l in labels]),
+        domain=dict(x=[0, 1], y=[0, 0.94]),
+        textinfo="none", hoverinfo="skip", showlegend=False,
+    ))
+    fig_risk_dist.add_trace(go.Pie(
+        labels=labels, values=values, hole=0.45, sort=False,
+        marker=dict(colors=[RISK_COLORS[l] for l in labels]),
+        domain=dict(x=[0, 1], y=[0.06, 1]),
+    ))
 
     # Risk by gender
     gender_risk = _risk_percentages(df, "Gender", ["F", "M"])
