@@ -2,6 +2,9 @@ from flask import Flask, render_template, request
 import sqlite3
 import pathlib
 import math
+import pandas as pd
+
+from dashboard import build_dashboard
 
 base_path = pathlib.Path(__file__).parent
 db_path = base_path / "student_health_data.db"
@@ -95,6 +98,19 @@ def data_page():
             filters=filters,
             filter_options=filter_options,
         )
+    except sqlite3.Error as e:
+        return f"Database error: {e}", 500
+
+
+@app.route("/dashboard")
+def dashboard_page():
+    try:
+        conn = get_db_connection()
+        df = pd.read_sql_query("SELECT * FROM student_health", conn)
+        conn.close()
+
+        charts, insights = build_dashboard(df)
+        return render_template("dashboard.html", charts=charts, insights=insights, total=len(df))
     except sqlite3.Error as e:
         return f"Database error: {e}", 500
 

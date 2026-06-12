@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Student Health Data{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
     <header class="site-header">
@@ -20,6 +21,7 @@
                 <a href="/" class="{% block nav_home %}{% endblock %}">Home</a>
                 <a href="/about" class="{% block nav_about %}{% endblock %}">About</a>
                 <a href="/data" class="{% block nav_data %}{% endblock %}">Data</a>
+                <a href="/dashboard" class="{% block nav_dashboard %}{% endblock %}">Dashboard</a>
                 <a href="/group" class="{% block nav_group %}{% endblock %}">Team</a>
             </nav>
         </div>

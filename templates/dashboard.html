@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | Student Health Data{% endblock %}
+{% block nav_dashboard %}active{% endblock %}
+
+{% block extra_head %}
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1 class="page-title">Health Risk Dashboard</h1>
+    <p class="page-subtitle">Visual analysis of health risk patterns across the full {{ total }}-student dataset.</p>
+    <hr class="page-divider">
+</section>
+
+<div class="chart-grid">
+    <div class="chart-card">{{ charts.risk_dist | safe }}</div>
+    <div class="chart-card">{{ charts.risk_gender | safe }}</div>
+    <div class="chart-card">{{ charts.risk_age | safe }}</div>
+    <div class="chart-card">{{ charts.stress_risk | safe }}</div>
+    <div class="chart-card">{{ charts.risk_sleep | safe }}</div>
+    <div class="chart-card">{{ charts.risk_activity | safe }}</div>
+</div>
+
+<section class="page-header" style="margin-top: 36px;">
+    <h1 class="page-title">Key Insights &amp; Recommendations</h1>
+    <p class="page-subtitle">Which students face higher health risk, what factors drive it, and what could help.</p>
+    <hr class="page-divider">
+</section>
+
+<div class="insights-grid">
+    {% for insight in insights %}
+    <div class="insight-card">
+        <h3>{{ insight.title }}</h3>
+        <p class="insight-text"><span class="insight-label">Finding</span>{{ insight.finding }}</p>
+        <p class="insight-text"><span class="insight-label">Recommendation</span>{{ insight.recommendation }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
