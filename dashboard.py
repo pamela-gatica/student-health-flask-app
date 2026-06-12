@@ -14,6 +14,8 @@ AGE_LABELS = ["18-19", "20-21", "22-23", "24"]
 
 
 def _style(fig, title):
+    fig.update_traces(selector=dict(type="bar"), marker_cornerradius=4)
+    fig.update_traces(selector=dict(type="pie"), marker=dict(line=dict(color="white", width=2)))
     fig.update_layout(
         title=dict(
             text=f"<b>{title}</b>", x=0.5, xanchor="center",
@@ -35,12 +37,39 @@ def _risk_percentages(df, group_col, order):
     return table.reset_index().melt(id_vars=group_col, var_name="Health_Risk_Level", value_name="Percentage")
 
 
-def _high_risk_rate(df, group_col, order, label):
-    rate = df.groupby(group_col)["Health_Risk_Level"].apply(lambda s: (s == "High").mean() * 100)
-    rate = rate.reindex(order).reset_index()
-    rate.columns = ["Category", "High Risk %"]
-    rate["Factor"] = label
-    return rate
+def _mini_bar(rate, label, color, y_max, show_y_title):
+    data = rate.reset_index()
+    data.columns = ["Category", "High Risk %"]
+    fig = px.bar(data, x="Category", y="High Risk %", color_discrete_sequence=[color])
+    fig.update_traces(marker_cornerradius=4)
+    fig.update_xaxes(title=None)
+    fig.update_yaxes(title="High Risk %" if show_y_title else None, range=[0, y_max])
+    fig.update_layout(
+        font=dict(family="Arial, sans-serif", color="#334155", size=11),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        margin=dict(t=6, b=30, l=44 if show_y_title else 28, r=6),
+        height=230,
+        showlegend=False,
+        autosize=True,
+    )
+    html = fig.to_html(full_html=False, include_plotlyjs=False, config={"responsive": True, "displayModeBar": False})
+    return f'<div class="mini-chart"><div class="mini-chart-label">{label}</div>{html}</div>'
+
+
+def _high_risk_factors_card(df):
+    activity_rate = df.groupby("Physical_Activity")["Health_Risk_Level"].apply(lambda s: (s == "High").mean() * 100).reindex(ACTIVITY_ORDER)
+    sleep_rate = df.groupby("Sleep_Quality")["Health_Risk_Level"].apply(lambda s: (s == "High").mean() * 100).reindex(SLEEP_ORDER)
+    mood_rate = df.groupby("Mood")["Health_Risk_Level"].apply(lambda s: (s == "High").mean() * 100).reindex(MOOD_ORDER)
+    y_max = max(activity_rate.max(), sleep_rate.max(), mood_rate.max()) * 1.15
+
+    title_html = '<div class="mini-chart-title"><b>High Risk Rate by Activity, Sleep &amp; Mood</b></div>'
+    row_html = (
+        _mini_bar(activity_rate, "Physical Activity", "#ef4444", y_max, True)
+        + _mini_bar(sleep_rate, "Sleep Quality", "#f59e0b", y_max, False)
+        + _mini_bar(mood_rate, "Mood", "#8b5cf6", y_max, False)
+    )
+    return f'{title_html}<div class="mini-chart-row">{row_html}</div>'
 
 
 def build_dashboard(df):
@@ -110,25 +139,6 @@ def build_dashboard(df):
     fig_risk_activity.update_xaxes(title="Physical activity")
     fig_risk_activity.update_yaxes(title="% of students")
 
-    # High-risk rate across physical activity, sleep quality, and mood
-    high_risk_factors = pd.concat([
-        _high_risk_rate(df, "Physical_Activity", ACTIVITY_ORDER, "Physical Activity"),
-        _high_risk_rate(df, "Sleep_Quality", SLEEP_ORDER, "Sleep Quality"),
-        _high_risk_rate(df, "Mood", MOOD_ORDER, "Mood"),
-    ])
-    fig_high_risk_factors = px.bar(
-        high_risk_factors, x="Category", y="High Risk %", facet_col="Factor",
-        color="Factor", color_discrete_sequence=["#ef4444", "#f59e0b", "#8b5cf6"],
-        category_orders={
-            "Factor": ["Physical Activity", "Sleep Quality", "Mood"],
-            "Category": ACTIVITY_ORDER + SLEEP_ORDER + MOOD_ORDER,
-        },
-    )
-    fig_high_risk_factors.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
-    fig_high_risk_factors.update_xaxes(title=None, matches=None)
-    fig_high_risk_factors.update_yaxes(title="High Risk %")
-    fig_high_risk_factors.update_layout(showlegend=False)
-
     # Study hours distribution by health risk level
     fig_study_risk = px.box(
         df, x="Health_Risk_Level", y="Study_Hours", color="Health_Risk_Level",
@@ -145,7 +155,7 @@ def build_dashboard(df):
         "stress_risk": _style(fig_stress_risk, "Average Stress by Health Risk Level"),
         "risk_sleep": _style(fig_risk_sleep, "Health Risk by Sleep Quality"),
         "risk_activity": _style(fig_risk_activity, "Health Risk by Physical Activity"),
-        "high_risk_factors": _style(fig_high_risk_factors, "High Risk Rate by Activity, Sleep & Mood"),
+        "high_risk_factors": _high_risk_factors_card(df),
         "study_hours_risk": _style(fig_study_risk, "Study Hours by Health Risk Level"),
     }
 
@@ -218,6 +228,20 @@ def build_insights(df):
             "recommendation": (
                 "Design wellness programs inclusively rather than targeting a single gender, "
                 "since the lifestyle factors above matter far more than gender alone."
+            ),
+        },
+        {
+            "title": "Study limitations to consider",
+            "finding": (
+                "This dashboard is based on a single cross-sectional sample of 1,000 students "
+                "with self-reported and biosensor measurements, so it shows correlations at one "
+                "point in time — not proven causes — and patterns may not generalize to other "
+                "student populations."
+            ),
+            "recommendation": (
+                "Treat these insights as hypotheses for further research (larger samples, "
+                "repeated measurements over time) rather than definitive conclusions before "
+                "designing interventions."
             ),
         },
     ]
