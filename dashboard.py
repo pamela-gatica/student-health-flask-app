@@ -6,6 +6,7 @@ RISK_COLORS = {"Low": "#10b981", "Moderate": "#f59e0b", "High": "#ef4444"}
 
 SLEEP_ORDER = ["Poor", "Moderate", "Good"]
 ACTIVITY_ORDER = ["Low", "Moderate", "High"]
+MOOD_ORDER = ["Happy", "Neutral", "Stressed"]
 GENDER_COLORS = {"F": "#8b5cf6", "M": "#2dd4bf"}
 
 AGE_BINS = [17, 19, 21, 23, 25]
@@ -14,7 +15,10 @@ AGE_LABELS = ["18-19", "20-21", "22-23", "24"]
 
 def _style(fig, title):
     fig.update_layout(
-        title=dict(text=title, font=dict(size=16, family="Georgia, serif", color="#1f1b63")),
+        title=dict(
+            text=f"<b>{title}</b>", x=0.5, xanchor="center",
+            font=dict(size=16, family="Georgia, serif", color="#1f1b63"),
+        ),
         font=dict(family="Arial, sans-serif", color="#334155", size=12),
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
@@ -29,6 +33,14 @@ def _risk_percentages(df, group_col, order):
     table = pd.crosstab(df[group_col], df["Health_Risk_Level"], normalize="index") * 100
     table = table.reindex(columns=RISK_ORDER, fill_value=0).reindex(order)
     return table.reset_index().melt(id_vars=group_col, var_name="Health_Risk_Level", value_name="Percentage")
+
+
+def _high_risk_rate(df, group_col, order, label):
+    rate = df.groupby(group_col)["Health_Risk_Level"].apply(lambda s: (s == "High").mean() * 100)
+    rate = rate.reindex(order).reset_index()
+    rate.columns = ["Category", "High Risk %"]
+    rate["Factor"] = label
+    return rate
 
 
 def build_dashboard(df):
@@ -98,6 +110,34 @@ def build_dashboard(df):
     fig_risk_activity.update_xaxes(title="Physical activity")
     fig_risk_activity.update_yaxes(title="% of students")
 
+    # High-risk rate across physical activity, sleep quality, and mood
+    high_risk_factors = pd.concat([
+        _high_risk_rate(df, "Physical_Activity", ACTIVITY_ORDER, "Physical Activity"),
+        _high_risk_rate(df, "Sleep_Quality", SLEEP_ORDER, "Sleep Quality"),
+        _high_risk_rate(df, "Mood", MOOD_ORDER, "Mood"),
+    ])
+    fig_high_risk_factors = px.bar(
+        high_risk_factors, x="Category", y="High Risk %", facet_col="Factor",
+        color="Factor", color_discrete_sequence=["#ef4444", "#f59e0b", "#8b5cf6"],
+        category_orders={
+            "Factor": ["Physical Activity", "Sleep Quality", "Mood"],
+            "Category": ACTIVITY_ORDER + SLEEP_ORDER + MOOD_ORDER,
+        },
+    )
+    fig_high_risk_factors.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
+    fig_high_risk_factors.update_xaxes(title=None, matches=None)
+    fig_high_risk_factors.update_yaxes(title="High Risk %")
+    fig_high_risk_factors.update_layout(showlegend=False)
+
+    # Study hours distribution by health risk level
+    fig_study_risk = px.box(
+        df, x="Health_Risk_Level", y="Study_Hours", color="Health_Risk_Level",
+        color_discrete_map=RISK_COLORS, category_orders={"Health_Risk_Level": RISK_ORDER},
+    )
+    fig_study_risk.update_xaxes(title="Health Risk Level")
+    fig_study_risk.update_yaxes(title="Study Hours / Week")
+    fig_study_risk.update_layout(showlegend=False)
+
     charts = {
         "risk_dist": _style(fig_risk_dist, "Overall Health Risk Distribution"),
         "risk_gender": _style(fig_risk_gender, "Health Risk by Gender"),
@@ -105,6 +145,8 @@ def build_dashboard(df):
         "stress_risk": _style(fig_stress_risk, "Average Stress by Health Risk Level"),
         "risk_sleep": _style(fig_risk_sleep, "Health Risk by Sleep Quality"),
         "risk_activity": _style(fig_risk_activity, "Health Risk by Physical Activity"),
+        "high_risk_factors": _style(fig_high_risk_factors, "High Risk Rate by Activity, Sleep & Mood"),
+        "study_hours_risk": _style(fig_study_risk, "Study Hours by Health Risk Level"),
     }
 
     insights = build_insights(df)
