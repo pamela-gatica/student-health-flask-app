@@ -156,11 +156,13 @@ def build_dashboard(df):
         "study_hours_risk": _style(fig_study_risk, "Study Hours by Health Risk Level"),
     }
 
-    insights = build_insights(df)
-    return charts, insights
+    return charts
 
 
 def build_insights(df):
+    df = df.copy()
+    df["Age_Group"] = pd.cut(df["Age"], bins=AGE_BINS, labels=AGE_LABELS)
+
     risk_by_sleep = pd.crosstab(df["Sleep_Quality"], df["Health_Risk_Level"], normalize="index") * 100
     risk_by_activity = pd.crosstab(df["Physical_Activity"], df["Health_Risk_Level"], normalize="index") * 100
     risk_by_age = pd.crosstab(df["Age_Group"], df["Health_Risk_Level"], normalize="index") * 100

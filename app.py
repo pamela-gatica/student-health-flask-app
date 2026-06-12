@@ -4,7 +4,7 @@ import pathlib
 import math
 import pandas as pd
 
-from dashboard import build_dashboard
+from dashboard import build_dashboard, build_insights
 
 base_path = pathlib.Path(__file__).parent
 db_path = base_path / "student_health_data.db"
@@ -109,8 +109,21 @@ def dashboard_page():
         df = pd.read_sql_query("SELECT * FROM student_health", conn)
         conn.close()
 
-        charts, insights = build_dashboard(df)
-        return render_template("dashboard.html", charts=charts, insights=insights, total=len(df))
+        charts = build_dashboard(df)
+        return render_template("dashboard.html", charts=charts, total=len(df))
+    except sqlite3.Error as e:
+        return f"Database error: {e}", 500
+
+
+@app.route("/insights")
+def insights_page():
+    try:
+        conn = get_db_connection()
+        df = pd.read_sql_query("SELECT * FROM student_health", conn)
+        conn.close()
+
+        insights = build_insights(df)
+        return render_template("insights.html", insights=insights, total=len(df))
     except sqlite3.Error as e:
         return f"Database error: {e}", 500
 

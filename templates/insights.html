@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Insights | Student Health Data{% endblock %}
+{% block nav_insights %}active{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1 class="page-title">Key Insights &amp; Recommendations</h1>
+    <p class="page-subtitle">Which students face higher health risk, what factors drive it, and what could help, based on the full {{ total }}-student dataset.</p>
+    <hr class="page-divider">
+</section>
+
+<div class="insights-grid">
+    {% for insight in insights %}
+    <div class="insight-card">
+        <h3>{{ insight.title }}</h3>
+        <p class="insight-text"><span class="insight-label">Finding</span>{{ insight.finding }}</p>
+        <p class="insight-text"><span class="insight-label">Recommendation</span>{{ insight.recommendation }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
