@@ -1,40 +1,38 @@
 {% extends "base.html" %}
 
-{% block title %}Team | Student Health Data{% endblock %}
+{% block title %}About This Project | Student Health Data{% endblock %}
 {% block nav_group %}active{% endblock %}
 
 {% block content %}
 <section class="page-header">
-    <h1 class="page-title">Project Credits</h1>
-    <p class="page-subtitle">Acknowledging contributors and project evolution.</p>
+    <h1 class="page-title">About This Project</h1>
+    <p class="page-subtitle">From a course assignment to a full portfolio project.</p>
     <hr class="page-divider">
 </section>
 
 <section class="section-block">
-    <span class="section-label">Project Evolution</span>
+    <span class="section-label">How It Started</span>
     <p>
-        This project was originally developed as a collaborative academic assignment.
-        It has been further enhanced and refined by <strong>Pamela Gatica</strong> as an individual portfolio project,
-        with improvements in design, structure, and functionality.
+        This project began as a group assignment for DAB111, a Python course in my Data Analytics for
+        Business program. The original requirement was simple: store a small dataset in a SQLite database
+        and serve it through a basic Flask website with an About page and a Data page showing a sample of
+        the records.
     </p>
 </section>
 
 <section class="section-block">
-    <span class="section-label">Contributors</span>
+    <span class="section-label">How It Evolved</span>
+    <p>
+        After the course ended, I continued developing the project on my own to turn it into a complete
+        portfolio piece, expanding it well beyond the original scope by:
+    </p>
 
     <div class="field-list">
-        <div class="field-item">
-            <strong>Pamela Gatica</strong> — Project Enhancement & Development
-        </div>
-        <div class="field-item">
-            <strong>Ivy Hoetu</strong>
-        </div>
-        <div class="field-item">
-            <strong>Javid Mehdiyev</strong>
-        </div>
-        <div class="field-item">
-            <strong>Fawaz Dimachki</strong>
-        </div>
+        <div class="field-item">Loading the full 1,000-row dataset instead of just a sample</div>
+        <div class="field-item">Adding pagination and multi-field filters (gender, activity, sleep, mood, risk) to the data table</div>
+        <div class="field-item">Building an interactive Plotly dashboard with 8 charts analyzing health risk by gender, age, sleep, activity, mood, and stress</div>
+        <div class="field-item">Adding a dedicated Insights page with data-driven findings, recommendations, and study limitations</div>
+        <div class="field-item">Redesigning the homepage, navigation, and overall visual styling</div>
     </div>
 </section>
 {% endblock %}
