@@ -52,9 +52,10 @@ def _high_risk_factors_fig(df):
         rows=1, cols=3, shared_yaxes=True, horizontal_spacing=0.06,
         subplot_titles=["Physical Activity", "Sleep Quality", "Mood"],
     )
-    fig.add_trace(go.Bar(x=ACTIVITY_ORDER, y=activity_rate.values, marker_color="#ef4444", showlegend=False), row=1, col=1)
-    fig.add_trace(go.Bar(x=SLEEP_ORDER, y=sleep_rate.values, marker_color="#f59e0b", showlegend=False), row=1, col=2)
-    fig.add_trace(go.Bar(x=MOOD_ORDER, y=mood_rate.values, marker_color="#8b5cf6", showlegend=False), row=1, col=3)
+    hovertemplate = "%{x}: %{y:.1f}%<extra></extra>"
+    fig.add_trace(go.Bar(x=ACTIVITY_ORDER, y=activity_rate.values, marker_color="#ef4444", showlegend=False, hovertemplate=hovertemplate), row=1, col=1)
+    fig.add_trace(go.Bar(x=SLEEP_ORDER, y=sleep_rate.values, marker_color="#f59e0b", showlegend=False, hovertemplate=hovertemplate), row=1, col=2)
+    fig.add_trace(go.Bar(x=MOOD_ORDER, y=mood_rate.values, marker_color="#8b5cf6", showlegend=False, hovertemplate=hovertemplate), row=1, col=3)
 
     fig.update_yaxes(title_text="High Risk %", row=1, col=1)
     fig.update_annotations(font=dict(family="Arial, sans-serif", size=12, color="#475467"))
@@ -80,6 +81,7 @@ def build_dashboard(df):
         labels=labels, values=values, hole=0.45, sort=False,
         marker=dict(colors=[RISK_COLORS[l] for l in labels]),
         domain=dict(x=[0, 1], y=[0.06, 1]),
+        hovertemplate="%{label}: %{value} students (%{percent})<extra></extra>",
     ))
 
     # Risk by gender
