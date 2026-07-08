@@ -137,7 +137,7 @@ After the course ended, I continued developing it independently to build it into
 
 ## Author
 
-**Pamela Gatica**
+**Pamela Gatica**  
 Data Analytics | Psychology & HR
 
 Interested in combining data analytics, backend development, and machine learning to turn raw data into accessible, meaningful applications.
