@@ -8,10 +8,6 @@ A full-stack data web application built with Flask and SQLite for exploring and 
   <img src="images/home.png" width="800">
 </p>
 
-<p align="center">
-  <img src="images/data.png" width="800">
-</p>
-
 ## Features
 
 - **Filterable data table** — browse all 1,000 student records with pagination and filters by gender, activity level, sleep quality, mood, and health risk
@@ -142,6 +138,6 @@ After the course ended, I continued developing it independently to build it into
 ## Author
 
 **Pamela Gatica**
-Data Analytics Student | Background in Psychology & HR
+Data Analytics | Psychology & HR
 
 Interested in combining data analytics, backend development, and machine learning to turn raw data into accessible, meaningful applications.
