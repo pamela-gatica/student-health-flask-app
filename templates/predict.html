@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block title %}Risk Predictor | Student Health Data{% endblock %}
+{% block nav_predict %}active{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1 class="page-title">Health Risk Predictor</h1>
+    <p class="page-subtitle">
+        Enter a student's profile below and the model will predict their likely health risk level
+        based on patterns learned from the 1,000-student dataset.
+    </p>
+    <hr class="page-divider">
+</section>
+
+<form method="POST" action="/predict" id="predict-form">
+    <div class="predict-form-grid">
+
+        <!-- LEFT: Lifestyle & Background -->
+        <div class="predict-section">
+            <span class="predict-section-title">Lifestyle &amp; Background</span>
+
+            <div class="predict-field">
+                <label class="predict-field-label" for="Age">Age <span class="field-unit">(18 – 24)</span></label>
+                <div class="slider-row">
+                    <input type="range" id="Age" name="Age" class="slider-input"
+                           min="18" max="24" step="1" value="{{ form_data.Age }}">
+                    <span class="slider-value" id="Age-val">{{ form_data.Age }}</span>
+                </div>
+            </div>
+
+            <div class="predict-field">
+                <label class="predict-field-label" for="Gender">Gender</label>
+                <select id="Gender" name="Gender" class="predict-select">
+                    {% for opt in ["M", "F"] %}
+                    <option value="{{ opt }}" {% if form_data.Gender == opt %}selected{% endif %}>
+                        {{ "Male" if opt == "M" else "Female" }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="predict-field">
+                <label class="predict-field-label" for="Sleep_Quality">Sleep Quality</label>
+                <select id="Sleep_Quality" name="Sleep_Quality" class="predict-select">
+                    {% for opt in ["Poor", "Moderate", "Good"] %}
+                    <option value="{{ opt }}" {% if form_data.Sleep_Quality == opt %}selected{% endif %}>{{ opt }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="predict-field">
+                <label class="predict-field-label" for="Physical_Activity">Physical Activity</label>
+                <select id="Physical_Activity" name="Physical_Activity" class="predict-select">
+                    {% for opt in ["Low", "Moderate", "High"] %}
+                    <option value="{{ opt }}" {% if form_data.Physical_Activity == opt %}selected{% endif %}>{{ opt }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="predict-field">
+                <label class="predict-field-label" for="Mood">Mood</label>
+                <select id="Mood" name="Mood" class="predict-select">
+                    {% for opt in ["Happy", "Neutral", "Stressed"] %}
+                    <option value="{{ opt }}" {% if form_data.Mood == opt %}selected{% endif %}>{{ opt }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="predict-field">
+                <label class="predict-field-label" for="Study_Hours">Study Hours / Week <span class="field-unit">(5 – 60)</span></label>
+                <div class="slider-row">
+                    <input type="range" id="Study_Hours" name="Study_Hours" class="slider-input"
+                           min="5" max="60" step="1" value="{{ form_data.Study_Hours | int }}">
+                    <span class="slider-value" id="Study_Hours-val">{{ form_data.Study_Hours | int }}</span>
+                </div>
+            </div>
+
+            <div class="predict-field">
+                <label class="predict-field-label" for="Project_Hours">Project Hours / Week <span class="field-unit">(0 – 33)</span></label>
+                <div class="slider-row">
+                    <input type="range" id="Project_Hours" name="Project_Hours" class="slider-input"
+                           min="0" max="33" step="1" value="{{ form_data.Project_Hours | int }}">
+                    <span class="slider-value" id="Project_Hours-val">{{ form_data.Project_Hours | int }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Health Metrics -->
+        <div class="predict-section">
+            <span class="predict-section-title">Health Metrics</span>
+
+            <div class="predict-field">
+                <label class="predict-field-label" for="Heart_Rate">Heart Rate <span class="field-unit">(bpm, 50 – 100)</span></label>
+                <div class="slider-row">
+                    <input type="range" id="Heart_Rate" name="Heart_Rate" class="slider-input"
+                           min="50" max="100" step="1" value="{{ form_data.Heart_Rate | int }}">
+                    <span class="slider-value" id="Heart_Rate-val">{{ form_data.Heart_Rate | int }}</span>
+                </div>
+            </div>
+
+            <div class="predict-field">
+                <label class="predict-field-label" for="Blood_Pressure_Systolic">Blood Pressure — Systolic <span class="field-unit">(mmHg, 90 – 166)</span></label>
+                <div class="slider-row">
+                    <input type="range" id="Blood_Pressure_Systolic" name="Blood_Pressure_Systolic" class="slider-input"
+                           min="90" max="166" step="1" value="{{ form_data.Blood_Pressure_Systolic | int }}">
+                    <span class="slider-value" id="Blood_Pressure_Systolic-val">{{ form_data.Blood_Pressure_Systolic | int }}</span>
+                </div>
+            </div>
+
+            <div class="predict-field">
+                <label class="predict-field-label" for="Blood_Pressure_Diastolic">Blood Pressure — Diastolic <span class="field-unit">(mmHg, 60 – 108)</span></label>
+                <div class="slider-row">
+                    <input type="range" id="Blood_Pressure_Diastolic" name="Blood_Pressure_Diastolic" class="slider-input"
+                           min="60" max="108" step="1" value="{{ form_data.Blood_Pressure_Diastolic | int }}">
+                    <span class="slider-value" id="Blood_Pressure_Diastolic-val">{{ form_data.Blood_Pressure_Diastolic | int }}</span>
+                </div>
+            </div>
+
+            <div class="predict-field">
+                <label class="predict-field-label" for="Stress_Level_Biosensor">Stress — Biosensor Reading <span class="field-unit">(0 – 10)</span></label>
+                <div class="slider-row">
+                    <input type="range" id="Stress_Level_Biosensor" name="Stress_Level_Biosensor" class="slider-input"
+                           min="1" max="10" step="0.5" value="{{ form_data.Stress_Level_Biosensor }}">
+                    <span class="slider-value" id="Stress_Level_Biosensor-val">{{ form_data.Stress_Level_Biosensor }}</span>
+                </div>
+            </div>
+
+            <div class="predict-field">
+                <label class="predict-field-label" for="Stress_Level_Self_Report">Stress — Self-Reported <span class="field-unit">(0 – 10)</span></label>
+                <div class="slider-row">
+                    <input type="range" id="Stress_Level_Self_Report" name="Stress_Level_Self_Report" class="slider-input"
+                           min="1" max="10" step="0.5" value="{{ form_data.Stress_Level_Self_Report }}">
+                    <span class="slider-value" id="Stress_Level_Self_Report-val">{{ form_data.Stress_Level_Self_Report }}</span>
+                </div>
+            </div>
+
+            <div class="predict-model-note">
+                <strong>Model:</strong> Random Forest trained on all 1,000 students.
+                Uses all 12 features — lifestyle, biometric, and academic — to classify risk.
+            </div>
+        </div>
+    </div>
+
+    <div class="predict-submit-row">
+        <button type="submit" class="predict-btn">Predict Health Risk</button>
+    </div>
+</form>
+
+{% if result %}
+    {% if result.error %}
+    <div class="predict-error">
+        Something went wrong: {{ result.error }}
+    </div>
+    {% else %}
+    {% set pred = result.prediction | lower %}
+    <div class="result-card" id="result">
+        <div class="result-label">Predicted Health Risk Level</div>
+        <div class="result-badge {{ pred }}">{{ result.prediction }}</div>
+
+        <div class="result-probs-label">Probability Breakdown</div>
+        <div class="prob-bars">
+            {% for level in ["Low", "Moderate", "High"] %}
+            {% set pct = result.probabilities.get(level, 0) %}
+            <div class="prob-row">
+                <span class="prob-label">{{ level }}</span>
+                <div class="prob-bar-track">
+                    <div class="prob-bar-fill {{ level | lower }}" style="width: {{ pct }}%"></div>
+                </div>
+                <span class="prob-pct">{{ pct }}%</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="result-disclaimer">
+            This prediction is based on patterns in a 1,000-student synthetic dataset and is
+            intended for demonstration purposes only. It does not constitute medical advice.
+        </div>
+    </div>
+    {% endif %}
+{% endif %}
+
+<script>
+document.querySelectorAll('.slider-input').forEach(function(slider) {
+    var display = document.getElementById(slider.id + '-val');
+    if (display) {
+        slider.addEventListener('input', function() { display.textContent = this.value; });
+    }
+});
+{% if result and not result.error %}
+var el = document.getElementById('result');
+if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+{% endif %}
+</script>
+{% endblock %}

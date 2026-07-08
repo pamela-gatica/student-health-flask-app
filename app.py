@@ -5,6 +5,7 @@ import math
 import pandas as pd
 
 from dashboard import build_dashboard, build_insights
+from ml_model import get_model, predict as ml_predict
 
 base_path = pathlib.Path(__file__).parent
 db_path = base_path / "student_health_data.db"
@@ -126,6 +127,46 @@ def insights_page():
         return render_template("insights.html", insights=insights, total=len(df))
     except sqlite3.Error as e:
         return f"Database error: {e}", 500
+
+
+PREDICT_DEFAULTS = {
+    "Age": 21, "Gender": "M", "Heart_Rate": 70,
+    "Blood_Pressure_Systolic": 120, "Blood_Pressure_Diastolic": 80,
+    "Stress_Level_Biosensor": 5.5, "Stress_Level_Self_Report": 5.5,
+    "Physical_Activity": "Moderate", "Sleep_Quality": "Good",
+    "Mood": "Neutral", "Study_Hours": 30, "Project_Hours": 15,
+}
+
+
+@app.route("/predict", methods=["GET", "POST"])
+def predict_page():
+    result = None
+    form_data = dict(PREDICT_DEFAULTS)
+    if request.method == "POST":
+        try:
+            form_data = {
+                "Age": int(request.form["Age"]),
+                "Gender": request.form["Gender"],
+                "Heart_Rate": float(request.form["Heart_Rate"]),
+                "Blood_Pressure_Systolic": float(request.form["Blood_Pressure_Systolic"]),
+                "Blood_Pressure_Diastolic": float(request.form["Blood_Pressure_Diastolic"]),
+                "Stress_Level_Biosensor": float(request.form["Stress_Level_Biosensor"]),
+                "Stress_Level_Self_Report": float(request.form["Stress_Level_Self_Report"]),
+                "Physical_Activity": request.form["Physical_Activity"],
+                "Sleep_Quality": request.form["Sleep_Quality"],
+                "Mood": request.form["Mood"],
+                "Study_Hours": float(request.form["Study_Hours"]),
+                "Project_Hours": float(request.form["Project_Hours"]),
+            }
+            conn = get_db_connection()
+            df = pd.read_sql_query("SELECT * FROM student_health", conn)
+            conn.close()
+            model = get_model(df)
+            prediction, probabilities = ml_predict(model, form_data)
+            result = {"prediction": prediction, "probabilities": probabilities}
+        except Exception as e:
+            result = {"error": str(e)}
+    return render_template("predict.html", result=result, form_data=form_data)
 
 
 @app.route("/group")
