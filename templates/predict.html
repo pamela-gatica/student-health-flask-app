@@ -13,6 +13,18 @@
     <hr class="page-divider">
 </section>
 
+<div class="predict-accuracy-note">
+    <span class="accuracy-icon">⚠️</span>
+    <div>
+        <strong>About this model's accuracy</strong><br>
+        The model scores ~99% accuracy on the training data — but that number is misleading.
+        The dataset is <em>synthetic</em> (artificially generated), which makes the patterns
+        unusually clean and easy to learn. In a real-world setting with actual student data,
+        accuracy would be much lower. Use this predictor as a learning demo, not as a
+        health assessment tool.
+    </div>
+</div>
+
 <form method="POST" action="/predict" id="predict-form">
     <div class="predict-form-grid">
 
