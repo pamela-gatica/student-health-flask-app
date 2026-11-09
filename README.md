@@ -138,6 +138,6 @@ After the course ended, I continued developing it independently to build it into
 ## Author
 
 **Pamela Gatica**  
-Data Analytics | Psychology & HR
+Data Analytics | Python | Machine Learning
 
-Interested in combining data analytics, backend development, and machine learning to turn raw data into accessible, meaningful applications.
+Passionate about transforming data into meaningful insights through statistical analysis, interactive visualizations, and predictive modeling. Interested in developing practical, data-driven solutions that support informed decision-making.
